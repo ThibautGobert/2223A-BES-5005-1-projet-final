@@ -1,0 +1,4 @@
+#Important pour rediriger toutes les requêtes vers index.php et pouvoir utiliser le router
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . index.php [L]
