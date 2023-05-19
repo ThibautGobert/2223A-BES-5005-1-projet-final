@@ -20,4 +20,10 @@ class ProjectController
         $images = File::cleanUpload($_FILES['images']);
         dd($images);
     }
+
+    public function index()
+    {
+        //todo récupérer les projets en base de donnée et les envoyer à la vue
+        View::render('project.index');
+    }
 }

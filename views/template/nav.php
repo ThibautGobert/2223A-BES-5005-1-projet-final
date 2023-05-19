@@ -13,7 +13,12 @@
                     <a class="nav-link" aria-current="page" href="/cv">CV</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/conexion" >Connexion</a>
+                    <a class="nav-link" aria-current="page" href="/project/index">Projets</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link " href="/connexion" >Connexion</a>
                 </li>
             </ul>
         </div>
