@@ -3,6 +3,7 @@
 
 use App\Controllers\BaseController;
 use App\Controllers\HomeController;
+use App\Controllers\ProjectController;
 use App\Controllers\UserController;
 use App\Utils\View;
 
@@ -15,6 +16,9 @@ $router->map( 'GET', '/users', [UserController::class, 'index'], 'user.index');
 $router->map( 'GET', '/users/[i:id]/edit', [UserController::class, 'edit'], 'user.edit');
 
 $router->map( 'GET', '/cv', [BaseController::class, 'cv'], 'cv');
+
+$router->map( 'GET', '/project/create', [ProjectController::class, 'create'], 'project.create');
+$router->map( 'POST', '/project/store', [ProjectController::class, 'store'], 'project.store');
 
 $match = $router->match();
 
