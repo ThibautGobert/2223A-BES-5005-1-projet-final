@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class Project
+class Project extends Model
 {
-
+    protected static string $table = 'projects';
 }

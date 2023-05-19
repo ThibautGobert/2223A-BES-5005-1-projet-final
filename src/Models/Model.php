@@ -26,7 +26,7 @@ class Model
         $query = 'select * from '.static::$table.' where id ='.$id;
 
         $statement = $pdo->query($query);
-        $statement->setFetchMode(PDO::FETCH_CLASS, User::class, ['id' => $id]);
+        $statement->setFetchMode(PDO::FETCH_CLASS, static::class, ['id' => $id]);
         return $statement->fetch();
     }
 
