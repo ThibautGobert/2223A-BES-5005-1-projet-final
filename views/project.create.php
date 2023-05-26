@@ -12,7 +12,7 @@
             </div>
             <div class="col-md-4">
                 <label class="form-label" for="date">Date de réalisation</label>
-                <input type="date" class="form-control" id="date" name="date">
+                <input type="datetime-local" class="form-control" id="date" name="date">
             </div>
             <div class="col-md-4">
                 <label class="form-label" for="category_id">Catégorie</label>

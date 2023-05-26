@@ -9,6 +9,7 @@
     },
     "require": {
         "altorouter/altorouter": "^2.0",
-      "ext-pdo": "*"
+      "ext-pdo": "*",
+        "nesbot/carbon": "^2.66"
     }
 }

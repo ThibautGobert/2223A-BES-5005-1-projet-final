@@ -27,14 +27,13 @@ class ProjectController
             'date' => $_POST['date'] ?? null,
         ]);
 
-
         $images = File::cleanUpload($_FILES['images']);
 
         foreach($images as $image) {
             //vérification si on a bien une image
             if(!empty($image['name']) && $image['tmp_name']) {
-                $path = $_SERVER['DOCUMENT_ROOT'].'/images/'.$image['name'];
-                file_put_contents($path, file_get_contents($image['tmp_name']));
+                $path = '/images/'.$image['name'];
+                file_put_contents($_SERVER['DOCUMENT_ROOT'].$path, file_get_contents($image['tmp_name']));
                 Image::create([
                     'path' => $path,
                     'name' => $image['name'],
@@ -50,8 +49,12 @@ class ProjectController
 
     public function index()
     {
-        //dd(Project::where(['title' => 'projet 1']));
-        //todo récupérer les projets en base de donnée et les envoyer à la vue
-        View::render('project.index');
+        $projects = Project::all();
+        View::render('project.index', ['projects' => $projects]);
+    }
+
+    public function edit($id)
+    {
+        dd($id);
     }
 }

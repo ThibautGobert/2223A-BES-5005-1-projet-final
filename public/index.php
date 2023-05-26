@@ -20,7 +20,7 @@ $router->map( 'GET', '/cv', [BaseController::class, 'cv'], 'cv');
 $router->map( 'GET', '/project/create', [ProjectController::class, 'create'], 'project.create');
 $router->map( 'POST', '/project/store', [ProjectController::class, 'store'], 'project.store');
 $router->map( 'GET', '/project/index', [ProjectController::class, 'index'], 'project.index');
-
+$router->map( 'GET', '/project/[i:id]/edit', [ProjectController::class, 'edit'], 'project.edit');
 $match = $router->match();
 
 if($match) {
