@@ -67,9 +67,16 @@ class ProjectController
         if(empty($_POST['category_id']) || $_POST['category_id'] === 'Sélectionner une catégorie') {
             Redirect::to('/project/'.$id.'/edit', [
                 'error' => 'Veuillez sélectionner une catégorie',
-                'old' => $_POST
             ]);
         }
-        
+        Project::update($id, [
+            'title' => $_POST['title'] ?? null,
+            'category_id' => $_POST['category_id'] ?? null,
+            'description' => $_POST['description'] ?? null,
+            'date' => $_POST['date'] ?? null,
+        ]);
+        Redirect::to('/project/index', [
+            'success' => 'Projet mis à jour avec succès !',
+        ]);
     }
 }
