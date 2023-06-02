@@ -55,6 +55,21 @@ class ProjectController
 
     public function edit($id)
     {
-        dd($id);
+        $project = Project::find($id);
+        View::render('project.edit', [
+            'project' => $project,
+            'categories' => Category::getList()
+        ]);
+    }
+
+    public function update($id)
+    {
+        if(empty($_POST['category_id']) || $_POST['category_id'] === 'Sélectionner une catégorie') {
+            Redirect::to('/project/'.$id.'/edit', [
+                'error' => 'Veuillez sélectionner une catégorie',
+                'old' => $_POST
+            ]);
+        }
+        
     }
 }

@@ -21,6 +21,7 @@ $router->map( 'GET', '/project/create', [ProjectController::class, 'create'], 'p
 $router->map( 'POST', '/project/store', [ProjectController::class, 'store'], 'project.store');
 $router->map( 'GET', '/project/index', [ProjectController::class, 'index'], 'project.index');
 $router->map( 'GET', '/project/[i:id]/edit', [ProjectController::class, 'edit'], 'project.edit');
+$router->map( 'POST', '/project/[i:id]/update', [ProjectController::class, 'update'], 'project.update');
 $match = $router->match();
 
 if($match) {

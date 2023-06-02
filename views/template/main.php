@@ -12,13 +12,30 @@
     <title><?= $title ?? 'Mon site' ?></title>
 </head>
 <body>
-<?php require __DIR__.'/nav.php' ?>
-<?php if(isset($_SESSION['success'])): ?>
-<div class="alert alert-success">
-    <?= $_SESSION['success'] ?>
+<div class="d-flex flex-column min-vh-100">
+    <?php require __DIR__.'/nav.php' ?>
+    <div class="flex-grow-1">
+        <?php if(isset($_SESSION['success'])): ?>
+            <div class="alert alert-success">
+                <?= $_SESSION['success'] ?>
+            </div>
+        <?php endif; ?>
+        <?php if(isset($_SESSION['error'])): ?>
+            <div class="alert alert-danger">
+                <?= $_SESSION['error'] ?>
+            </div>
+        <?php endif; ?>
+        <?= $content ?>
+    </div>
+    <?php require __DIR__.'/footer.php' ?>
 </div>
-<?php endif; ?>
-<?= $content ?>
-<?php require __DIR__.'/footer.php' ?>
+
+
+
+
+
+
+
+
 </body>
 </html>
