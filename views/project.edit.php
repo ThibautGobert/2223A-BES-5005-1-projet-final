@@ -37,6 +37,18 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <?php foreach($project->images() as $image): ?>
+            <div class="col-2">
+                <div class="img-wrapper">
+                    <a href="/image/<?= $image->id ?>/delete" class="btn btn-sm btn-danger btn-image">
+                        <i class="fa fa-times"></i>
+                    </a>
+                    <img src="<?= $image->path ?>" alt="<?= $image->name ?>" class="img-fluid">
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
          <div class="row">
             <div class="col-md-12 text-end">
                 <button type="submit" class="btn btn-success btn-sm">Enregistrer</button>

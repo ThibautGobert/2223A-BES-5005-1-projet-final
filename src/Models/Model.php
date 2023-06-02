@@ -110,4 +110,13 @@ class Model
         return $statement->fetchAll();
     }
 
+    public static function delete(int $id)
+    {
+        $pdo = DB::getInstance();
+        $query = 'DELETE from '.static::$table.' where id = ?';
+
+        $stmt= $pdo->prepare($query);
+        $stmt->execute([$id]);
+        return true;
+    }
 }

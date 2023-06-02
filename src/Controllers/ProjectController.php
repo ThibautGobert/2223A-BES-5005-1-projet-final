@@ -27,6 +27,31 @@ class ProjectController
             'date' => $_POST['date'] ?? null,
         ]);
 
+        $this->handleImages($project);
+
+        Redirect::to('/project/index', [
+            'success' => 'Projet créé avec succès'
+        ]);
+    }
+
+    public function index()
+    {
+        $projects = Project::all();
+        View::render('project.index', ['projects' => $projects]);
+    }
+
+    public function edit($id)
+    {
+        $project = Project::find($id);
+
+        View::render('project.edit', [
+            'project' => $project,
+            'categories' => Category::getList()
+        ]);
+    }
+
+    private function handleImages(Project $project)
+    {
         $images = File::cleanUpload($_FILES['images']);
 
         foreach($images as $image) {
@@ -44,25 +69,6 @@ class ProjectController
                 ]);
             }
         }
-
-        Redirect::to('/project/index', [
-            'success' => 'Projet créé avec succès'
-        ]);
-    }
-
-    public function index()
-    {
-        $projects = Project::all();
-        View::render('project.index', ['projects' => $projects]);
-    }
-
-    public function edit($id)
-    {
-        $project = Project::find($id);
-        View::render('project.edit', [
-            'project' => $project,
-            'categories' => Category::getList()
-        ]);
     }
 
     public function update($id)
@@ -73,8 +79,8 @@ class ProjectController
             ]);
         }
 
-
-
+        $project = Project::find($id);
+        $this->handleImages($project);
 
         Project::update($id, [
             'title' => $_POST['title'] ?? null,
@@ -82,6 +88,7 @@ class ProjectController
             'description' => $_POST['description'] ?? null,
             'date' => $_POST['date'] ?? null,
         ]);
+
         Redirect::to('/project/index', [
             'success' => 'Projet mis à jour avec succès !',
         ]);
