@@ -104,7 +104,7 @@ class Model
     public static function all()
     {
         $pdo = DB::getInstance();
-        $query = 'select * from '.static::$table.' ORDER BY date';
+        $query = 'select * from '.static::$table;
         $statement = $pdo->query($query);
         $statement->setFetchMode(PDO::FETCH_CLASS, static::class);
         return $statement->fetchAll();

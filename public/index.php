@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+use App\Controllers\AuthController;
 use App\Controllers\BaseController;
 use App\Controllers\HomeController;
 use App\Controllers\ImageController;
@@ -13,8 +14,6 @@ require '../vendor/autoload.php';
 $router = new AltoRouter();
 
 $router->map( 'GET', '/', [HomeController::class, 'index'], 'home');
-$router->map( 'GET', '/users', [UserController::class, 'index'], 'user.index');
-$router->map( 'GET', '/users/[i:id]/edit', [UserController::class, 'edit'], 'user.edit');
 
 $router->map( 'GET', '/cv', [BaseController::class, 'cv'], 'cv');
 
@@ -25,6 +24,24 @@ $router->map( 'GET', '/project/[i:id]/edit', [ProjectController::class, 'edit'],
 $router->map( 'POST', '/project/[i:id]/update', [ProjectController::class, 'update'], 'project.update');
 
 $router->map( 'GET', '/image/[i:id]/delete', [ImageController::class, 'delete'], 'image.delete');
+
+/**
+ * Routes pour la gestion utilisateurs
+ */
+$router->map( 'GET', '/user/[i:id]/edit', [UserController::class, 'edit'], 'user.edit');
+$router->map( 'POST', '/user/[i:id]/update', [UserController::class, 'update'], 'user.update');
+$router->map( 'GET', '/user/index', [UserController::class, 'index'], 'user.index');
+$router->map( 'GET', '/user/[i:id]/delete', [UserController::class, 'delete'], 'user.delete');
+
+/**
+ * Routes pour l'authentification
+ */
+$router->map( 'GET', '/connexion', [AuthController::class, 'connexion'], 'connexion');
+$router->map( 'GET', '/deconnexion', [AuthController::class, 'deconnexion'], 'deconnexion');
+$router->map( 'POST', '/connexion', [AuthController::class, 'connect'], 'connect');
+$router->map( 'POST', '/register', [AuthController::class, 'register'], 'register');
+
+$router->map( 'GET', '/inscription', [AuthController::class, 'inscription'], 'inscription');
 
 $match = $router->match();
 
